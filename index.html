@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Rubik+Wet+Paint&family=JetBrains+Mono:wght@500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg: #0A0D0A;
@@ -27,8 +27,8 @@
     --text: #F3F6F1;
     --text-muted: #93A08F;
     --text-faint: #5B665A;
-    --font-graffiti: 'Rubik Wet Paint', cursive;
-    --font-display: 'Bungee', cursive;
+    --font-graffiti: 'Poppins', sans-serif;
+    --font-display: 'Poppins', sans-serif;
     --font-body: 'Manrope', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
     --nav-h: 70px;
@@ -36,14 +36,13 @@
     --safe-bottom: env(safe-area-inset-bottom, 0px);
   }
   *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color: transparent;}
-  html,body{height:100%; overscroll-behavior-y: contain;}
+  html,body{height:100%; width:100%; position:fixed; inset:0; overflow:hidden; overscroll-behavior:none;}
   body{
     background: var(--bg); color: var(--text); font-family: var(--font-body);
-    -webkit-font-smoothing: antialiased; overflow-x: hidden; touch-action: pan-y;
-    background-image: repeating-linear-gradient(100deg, rgba(76,214,91,0.035) 0px, rgba(76,214,91,0.035) 40px, transparent 40px, transparent 80px);
+    -webkit-font-smoothing: antialiased; touch-action: manipulation;
   }
   @media (prefers-reduced-motion: reduce){ *{animation-duration:.01ms !important; transition-duration:.01ms !important;} }
-  #app{max-width:480px; margin:0 auto; min-height:100vh; position:relative; padding-bottom: calc(var(--nav-h) + 16px + var(--safe-bottom));}
+  #app{max-width:480px; margin:0 auto; height:100%; position:relative; overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior-y:contain; padding-bottom: calc(var(--nav-h) + 16px + var(--safe-bottom));}
   a{color:inherit; text-decoration:none;}
   button{font-family:inherit; cursor:pointer; border:none; position:relative; overflow:hidden; -webkit-user-select:none; user-select:none;}
   input{font-family:inherit;}
@@ -87,7 +86,7 @@
   .auth-hero p{color:var(--text-muted); font-size:13px; margin-top:10px; font-weight:500;}
   .field{margin-bottom:14px;}
   .field label{display:block; font-family:var(--font-display); font-size:9.5px; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin-bottom:7px;}
-  .field input{width:100%; padding:15px 16px; border-radius:12px; background:var(--card); border:1px solid var(--card-line); color:var(--text); font-size:15px; transition:border-color .2s ease, box-shadow .2s ease;}
+  .field input{width:100%; padding:15px 16px; border-radius:12px; background:var(--card); border:1px solid var(--card-line); color:var(--text); font-size:16px; transition:border-color .2s ease, box-shadow .2s ease;}
   .field input:focus{outline:none; border-color:var(--green); box-shadow:0 0 0 3px rgba(76,214,91,0.15);}
   .pin-row{display:flex; gap:10px;}
   .pin-row .field{flex:1;}
@@ -227,7 +226,7 @@
 <body>
 
 <div id="splash">
-  <img class="splash-logo" src="https://i.postimg.cc/xj3wQWSd/Chat-GPT-Image-Aug-25-2026-06-33-11-PM.png" alt="Royal Classic Turf" />
+  <img class="splash-logo" src="icons/logo.png" alt="Royal Classic Turf" />
   <div class="splash-bar"><div class="splash-bar-fill"></div></div>
 </div>
 
@@ -239,7 +238,7 @@
   <div class="screen active" id="screen-register">
     <div class="auth-wrap">
       <div class="auth-hero">
-        <img class="auth-logo" src="https://i.postimg.cc/xj3wQWSd/Chat-GPT-Image-Aug-25-2026-06-33-11-PM.png" alt="Royal Classic Turf" />
+        <img class="auth-logo" src="icons/logo.png" alt="Royal Classic Turf" />
         <h1>ROYAL CLASSIC</h1>
         <p>Create your account to check live availability &amp; manage your bookings</p>
       </div>
@@ -259,7 +258,7 @@
   <div class="screen" id="screen-login">
     <div class="auth-wrap">
       <div class="auth-hero">
-        <img class="auth-logo" src="https://i.postimg.cc/xj3wQWSd/Chat-GPT-Image-Aug-25-2026-06-33-11-PM.png" alt="Royal Classic Turf" />
+        <img class="auth-logo" src="icons/logo.png" alt="Royal Classic Turf" />
         <h1>WELCOME BACK</h1>
         <p>Log in to see your bookings and check tonight's slots</p>
       </div>
@@ -276,7 +275,7 @@
   <div id="main-shell" style="display:none;">
     <header class="topbar">
       <div class="brand">
-        <img class="brand-logo" src="https://i.postimg.cc/xj3wQWSd/Chat-GPT-Image-Aug-25-2026-06-33-11-PM.png" alt="logo" />
+        <img class="brand-logo" src="icons/logo.png" alt="logo" />
         <div><div class="brand-name">ROYAL CLASSIC</div><div class="brand-sub">Turf</div></div>
       </div>
       <div class="status-pill"><span class="status-dot"></span>OPEN 6PM–6AM</div>
@@ -285,7 +284,7 @@
     <!-- ---- HOME ---- -->
     <div class="screen active" id="screen-home">
       <div class="hero-card">
-        <img class="hero-logo" src="https://i.postimg.cc/xj3wQWSd/Chat-GPT-Image-Aug-25-2026-06-33-11-PM.png" alt="Royal Classic Turf" />
+        <img class="hero-logo" src="icons/logo.png" alt="Royal Classic Turf" />
         <h2>ROYAL CLASSIC TURF</h2>
         <div class="hero-tags"><span class="tag">🏏 Cricket</span><span class="tag">⚽ Football</span></div>
         <p class="hero-meta" id="home-meta">📍 Inside Royal Matric Hr Sec School campus<br/>🕕 6:00 PM – 6:00 AM · 1-hour slots</p>
@@ -321,13 +320,7 @@
 
     <!-- ---- AVAILABILITY ---- -->
     <div class="screen" id="screen-availability">
-      <div class="section-label" style="margin-top:16px;">Choose Sport</div>
-      <div class="sport-toggle">
-        <div class="sport-toggle-indicator" id="sport-indicator"></div>
-        <button class="sport-btn active" data-sport="Cricket" onclick="selectSport('Cricket')">🏏 CRICKET</button>
-        <button class="sport-btn" data-sport="Football" onclick="selectSport('Football')">⚽ FOOTBALL</button>
-      </div>
-      <div class="section-label">Select Date</div>
+      <div class="section-label" style="margin-top:16px;">Select Date</div>
       <div class="date-scroll" id="date-scroll"></div>
       <div class="legend">
         <span><i style="background:var(--green);"></i>Available</span>
@@ -360,10 +353,35 @@
         <div class="upcoming-info"><div class="u-title" id="profile-name">—</div><div class="u-sub" id="profile-mobile">—</div></div>
       </div>
       <div class="admin-menu">
-        <div class="admin-menu-item" onclick="showToast('Coming soon')"><div class="m-left"><div class="m-icon">✏️</div>EDIT PROFILE</div><div class="m-arrow">›</div></div>
-        <div class="admin-menu-item" onclick="showToast('Coming soon')"><div class="m-left"><div class="m-icon">🔒</div>CHANGE PIN</div><div class="m-arrow">›</div></div>
+        <div class="admin-menu-item" onclick="openEditProfile()"><div class="m-left"><div class="m-icon">✏️</div>EDIT PROFILE</div><div class="m-arrow">›</div></div>
+        <div class="admin-menu-item" onclick="openChangePin()"><div class="m-left"><div class="m-icon">🔒</div>CHANGE PIN</div><div class="m-arrow">›</div></div>
       </div>
       <p class="logout-link" onclick="handleLogout()">Log Out</p>
+    </div>
+
+    <!-- ---- EDIT PROFILE ---- -->
+    <div class="screen" id="screen-edit-profile">
+      <div class="admin-panel-header" style="margin-top:16px;">
+        <div class="back-btn" onclick="switchTabProgrammatic('screen-profile')">←</div>
+        <h3>EDIT PROFILE</h3>
+      </div>
+      <div class="field"><label>Full Name</label><input type="text" id="ep-name" placeholder="Your name" /></div>
+      <div class="field"><label>Mobile Number</label><input type="tel" id="ep-mobile" disabled style="opacity:.5;" /></div>
+      <p class="error-msg" id="ep-error"></p>
+      <button class="btn-primary" id="ep-btn" onclick="handleUpdateProfile()">Save Changes</button>
+    </div>
+
+    <!-- ---- CHANGE PIN ---- -->
+    <div class="screen" id="screen-change-pin">
+      <div class="admin-panel-header" style="margin-top:16px;">
+        <div class="back-btn" onclick="switchTabProgrammatic('screen-profile')">←</div>
+        <h3>CHANGE PIN</h3>
+      </div>
+      <div class="field"><label>Current PIN</label><input type="password" id="cp-current" maxlength="4" inputmode="numeric" placeholder="4-digit" /></div>
+      <div class="field"><label>New PIN</label><input type="password" id="cp-new" maxlength="4" inputmode="numeric" placeholder="4-digit" /></div>
+      <div class="field"><label>Confirm New PIN</label><input type="password" id="cp-confirm" maxlength="4" inputmode="numeric" placeholder="4-digit" /></div>
+      <p class="error-msg" id="cp-error"></p>
+      <button class="btn-primary" id="cp-btn" onclick="handleChangePin()">Update PIN</button>
     </div>
 
     <nav class="bottom-nav">
@@ -379,7 +397,7 @@
     <div class="admin-login-wrap">
       <div class="admin-badge">🔒 ADMIN ACCESS</div>
       <div class="auth-hero" style="text-align:left; margin-bottom:24px;">
-        <img class="auth-logo" style="margin:0 0 14px 0;" src="https://i.postimg.cc/xj3wQWSd/Chat-GPT-Image-Aug-25-2026-06-33-11-PM.png" alt="logo" />
+        <img class="auth-logo" style="margin:0 0 14px 0;" src="icons/logo.png" alt="logo" />
         <h1 style="font-size:24px;">TURF ADMIN</h1>
         <p>Manage bookings, slots &amp; analytics</p>
       </div>
@@ -395,13 +413,13 @@
   <div class="screen" id="screen-admin-dash">
     <div style="padding-top:calc(16px + var(--safe-top));">
       <div class="admin-panel-header">
-        <img class="brand-logo" src="https://i.postimg.cc/xj3wQWSd/Chat-GPT-Image-Aug-25-2026-06-33-11-PM.png" alt="logo" />
+        <img class="brand-logo" src="icons/logo.png" alt="logo" />
         <div><div class="brand-name">ADMIN DASHBOARD</div><div class="brand-sub" id="admin-today-date">—</div></div>
       </div>
       <div class="stat-grid">
-        <div class="stat-card"><div class="s-num" id="stat-available">—</div><div class="s-label">Available (Cricket)</div></div>
-        <div class="stat-card"><div class="s-num" id="stat-booked">—</div><div class="s-label">Booked (Cricket)</div></div>
-        <div class="stat-card"><div class="s-num" id="stat-blocked">—</div><div class="s-label">Blocked (Cricket)</div></div>
+        <div class="stat-card"><div class="s-num" id="stat-available">—</div><div class="s-label">Available Tonight</div></div>
+        <div class="stat-card"><div class="s-num" id="stat-booked">—</div><div class="s-label">Booked Tonight</div></div>
+        <div class="stat-card"><div class="s-num" id="stat-blocked">—</div><div class="s-label">Blocked Tonight</div></div>
         <div class="stat-card"><div class="s-num" id="stat-revenue">—</div><div class="s-label">Revenue Today</div></div>
       </div>
       <div class="admin-menu" style="margin-top:20px;">
@@ -422,7 +440,7 @@
       <div class="section-label" style="margin-top:0;">New Manual Booking</div>
       <div class="form-row">
         <div class="field"><label>Sport</label>
-          <select id="nb-sport" style="width:100%; padding:15px 16px; border-radius:12px; background:var(--card); border:1px solid var(--card-line); color:var(--text); font-size:15px;">
+          <select id="nb-sport" style="width:100%; padding:15px 16px; border-radius:12px; background:var(--card); border:1px solid var(--card-line); color:var(--text); font-size:16px;">
             <option value="Cricket">Cricket</option><option value="Football">Football</option>
           </select>
         </div>
@@ -447,11 +465,6 @@
     <div style="padding-top:calc(16px + var(--safe-top));">
       <div class="admin-panel-header"><div class="back-btn" onclick="showScreen('screen-admin-dash')">←</div><h3>SLOT MANAGEMENT</h3></div>
       <p style="font-size:12.5px; color:var(--text-muted); margin-bottom:14px;">Tap a slot to block/unblock it. Booked slots must be cancelled from Bookings.</p>
-      <div class="sport-toggle">
-        <div class="sport-toggle-indicator" id="admin-sport-indicator"></div>
-        <button class="sport-btn active" data-sport="Cricket" onclick="selectAdminSport('Cricket')">🏏 CRICKET</button>
-        <button class="sport-btn" data-sport="Football" onclick="selectAdminSport('Football')">⚽ FOOTBALL</button>
-      </div>
       <div class="date-scroll" id="admin-date-scroll"></div>
       <div class="slot-grid" id="admin-slot-grid"><div class="empty-state">Loading…</div></div>
     </div>
@@ -513,8 +526,6 @@ const timeSlots = ['6:00 PM','7:00 PM','8:00 PM','9:00 PM','10:00 PM','11:00 PM'
 
 let session = { loggedIn:false, token:null, name:'', mobile:'' };
 let adminSession = { loggedIn:false, token:null };
-let currentSport = 'Cricket';
-let currentAdminSport = 'Cricket';
 let currentDate = todayStr();
 let currentAdminDate = todayStr();
 let turfSettings = {};
@@ -568,7 +579,7 @@ window.addEventListener('load', () => {
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  const mainScreens = ['screen-home','screen-availability','screen-bookings','screen-profile'];
+  const mainScreens = ['screen-home','screen-availability','screen-bookings','screen-profile','screen-edit-profile','screen-change-pin'];
   document.getElementById('main-shell').style.display = mainScreens.includes(id) ? 'block' : 'none';
 }
 function switchTab(screenId, el){
@@ -757,16 +768,10 @@ function renderDatePicker(){
     wrap.appendChild(chip);
   }
 }
-function selectSport(sport){
-  currentSport = sport;
-  document.querySelectorAll('#screen-availability .sport-btn').forEach(b => b.classList.toggle('active', b.dataset.sport === sport));
-  document.getElementById('sport-indicator').style.transform = sport === 'Football' ? 'translateX(100%)' : 'translateX(0)';
-  renderSlots();
-}
 async function renderSlots(){
   const grid = document.getElementById('slot-grid');
   grid.innerHTML = '<div class="empty-state">Loading slots…</div>';
-  const res = await api('getSlots', { date: currentDate, sport: currentSport });
+  const res = await api('getSlots', { date: currentDate });
   if(!res.success){ grid.innerHTML = `<div class="empty-state">${res.error || 'Could not load slots'}</div>`; return; }
   const bySlot = {}; (res.data || []).forEach(s => bySlot[s.time] = s);
   grid.innerHTML = '';
@@ -810,7 +815,7 @@ function renderBookingsFromCache(tab){
 /* ================= ADMIN: DASHBOARD ================= */
 async function loadAdminDashboard(){
   document.getElementById('admin-today-date').textContent = new Date().toDateString();
-  const res = await api('getSlots', { date: todayStr(), sport: 'Cricket' });
+  const res = await api('getSlots', { date: todayStr() });
   if(res.success){
     const statuses = (res.data || []).map(s => String(s.status).toUpperCase());
     document.getElementById('stat-available').textContent = statuses.filter(s=>s==='AVAILABLE').length;
@@ -825,7 +830,6 @@ async function loadAdminDashboard(){
 async function loadAdminBookingsList(){
   const el = document.getElementById('admin-bookings-list');
   el.innerHTML = '<div class="empty-state">Loading…</div>';
-  const res = await api('getSlots', { date: todayStr(), sport: currentAdminSport });
   // Bookings list view: reuse recent bookings via getSlots + manual join isn't ideal;
   // fall back to showing a simple note since Code.gs doesn't expose "list all bookings" directly.
   el.innerHTML = '<div class="empty-state">Use the sheet or Analytics for full booking history. New bookings you save below appear instantly on the customer app.</div>';
@@ -851,12 +855,6 @@ async function handleCreateBooking(){
 }
 
 /* ================= ADMIN: SLOTS ================= */
-function selectAdminSport(sport){
-  currentAdminSport = sport;
-  document.querySelectorAll('#screen-admin-slots .sport-btn').forEach(b => b.classList.toggle('active', b.dataset.sport === sport));
-  document.getElementById('admin-sport-indicator').style.transform = sport === 'Football' ? 'translateX(100%)' : 'translateX(0)';
-  renderAdminSlots();
-}
 function renderAdminDatePicker(){
   const wrap = document.getElementById('admin-date-scroll');
   wrap.innerHTML = '';
@@ -875,7 +873,7 @@ function renderAdminDatePicker(){
 async function renderAdminSlots(){
   const grid = document.getElementById('admin-slot-grid');
   grid.innerHTML = '<div class="empty-state">Loading…</div>';
-  const res = await api('getSlots', { date: currentAdminDate, sport: currentAdminSport });
+  const res = await api('getSlots', { date: currentAdminDate });
   if(!res.success){ grid.innerHTML = `<div class="empty-state">${res.error||'Could not load'}</div>`; return; }
   const bySlot = {}; (res.data || []).forEach(s => bySlot[s.time] = s);
   grid.innerHTML = '';
@@ -890,10 +888,10 @@ async function renderAdminSlots(){
       div.onclick = async () => {
         vibrate(10);
         if(status === 'blocked'){
-          const r = await api('unblockSlot', { date: currentAdminDate, sport: currentAdminSport, time: t });
+          const r = await api('unblockSlot', { date: currentAdminDate, time: t });
           if(r.success){ showToast('Slot unblocked'); renderAdminSlots(); } else showToast(r.error || 'Failed', true);
         } else {
-          const r = await api('blockSlot', { date: currentAdminDate, sport: currentAdminSport, time: t, reason:'' });
+          const r = await api('blockSlot', { date: currentAdminDate, time: t, reason:'' });
           if(r.success){ showToast('Slot blocked'); renderAdminSlots(); } else showToast(r.error || 'Failed', true);
         }
       };
@@ -977,6 +975,50 @@ async function handleSaveSettings(){
   });
   setBusy('set-btn', false, 'Save Settings');
   if(res.success) showToast('Settings saved'); else showToast(res.error || 'Failed to save', true);
+}
+
+/* ================= EDIT PROFILE / CHANGE PIN ================= */
+function openEditProfile(){
+  document.getElementById('ep-name').value = session.name || '';
+  document.getElementById('ep-mobile').value = session.mobile || '';
+  document.getElementById('ep-error').style.display = 'none';
+  switchTabProgrammatic('screen-edit-profile');
+}
+async function handleUpdateProfile(){
+  const name = document.getElementById('ep-name').value.trim();
+  const err = document.getElementById('ep-error');
+  err.style.display = 'none';
+  if(!name){ err.textContent = 'Please enter your name.'; err.style.display = 'block'; return; }
+  setBusy('ep-btn', true);
+  const res = await api('updateProfile', { token: session.token, name });
+  setBusy('ep-btn', false, 'Save Changes');
+  if(!res.success){ err.textContent = res.error || 'Could not update profile'; err.style.display = 'block'; return; }
+  session.name = name;
+  localStorage_safe_set();
+  document.getElementById('profile-name').textContent = name;
+  showToast('Profile updated');
+  switchTabProgrammatic('screen-profile');
+}
+
+function openChangePin(){
+  ['cp-current','cp-new','cp-confirm'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('cp-error').style.display = 'none';
+  switchTabProgrammatic('screen-change-pin');
+}
+async function handleChangePin(){
+  const current = document.getElementById('cp-current').value.trim();
+  const next = document.getElementById('cp-new').value.trim();
+  const confirm = document.getElementById('cp-confirm').value.trim();
+  const err = document.getElementById('cp-error');
+  err.style.display = 'none';
+  if(current.length !== 4 || next.length !== 4 || confirm.length !== 4){ err.textContent = 'All PINs must be 4 digits.'; err.style.display = 'block'; return; }
+  if(next !== confirm){ err.textContent = 'New PINs do not match.'; err.style.display = 'block'; return; }
+  setBusy('cp-btn', true);
+  const res = await api('changePin', { token: session.token, currentPin: current, newPin: next });
+  setBusy('cp-btn', false, 'Update PIN');
+  if(!res.success){ err.textContent = res.error || 'Could not update PIN'; err.style.display = 'block'; return; }
+  showToast('PIN updated');
+  switchTabProgrammatic('screen-profile');
 }
 
 /* ================= BOOT ================= */
