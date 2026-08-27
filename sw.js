@@ -2,13 +2,16 @@
 // Caches the app shell only. Slot/booking data always comes live
 // from the backend (Google Apps Script), never from cache.
 
-const CACHE_NAME = 'royal-classic-turf-v1';
+const CACHE_NAME = 'royal-classic-turf-v2';
+
+// Only same-origin files are precached. The logo and Google Fonts are
+// loaded live over the network (with normal browser HTTP caching) —
+// precaching cross-origin images can make the install step fail if
+// the host briefly blocks a CORS preflight.
 const APP_SHELL = [
   './',
   './index.html',
-  './manifest.json',
-  './icons/icon-192.png',
-  './icons/icon-512.png'
+  './manifest.json'
 ];
 
 self.addEventListener('install', (event) => {
@@ -36,8 +39,14 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // App shell: cache-first, fall back to network.
-  event.respondWith(
-    caches.match(event.request).then((cached) => cached || fetch(event.request))
-  );
+  // App shell (same-origin): cache-first, fall back to network.
+  if (url.origin === self.location.origin) {
+    event.respondWith(
+      caches.match(event.request).then((cached) => cached || fetch(event.request))
+    );
+    return;
+  }
+
+  // Everything else (logo, fonts, etc.): network-first, no precache dependency.
+  event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
 });
