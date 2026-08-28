@@ -1,6 +1,6 @@
 {
   "name": "Royal Classic Turf",
-  "short_name": "Royal Classic",
+  "short_name": "RC TURF",
   "description": "Check live slot availability and manage your bookings at Royal Classic Turf.",
   "start_url": "./index.html",
   "scope": "./",
