@@ -452,14 +452,10 @@
       </div>
       <div class="form-row">
         <div class="field"><label>Start Time</label>
-          <select id="nb-time" style="width:100%; padding:15px 16px; border-radius:12px; background:var(--card); border:1px solid var(--card-line); color:var(--text); font-size:16px;"></select>
+          <select id="nb-time" onchange="refreshDurationOptions()" style="width:100%; padding:15px 16px; border-radius:12px; background:var(--card); border:1px solid var(--card-line); color:var(--text); font-size:16px;"></select>
         </div>
         <div class="field"><label>Duration</label>
           <select id="nb-duration" style="width:100%; padding:15px 16px; border-radius:12px; background:var(--card); border:1px solid var(--card-line); color:var(--text); font-size:16px;">
-            <option value="1">1 Hour</option>
-            <option value="2">2 Hours</option>
-            <option value="3">3 Hours</option>
-            <option value="4">4 Hours</option>
           </select>
         </div>
       </div>
@@ -856,6 +852,24 @@ async function loadAdminDashboard(){
   if(nbTime && !nbTime.options.length){
     nbTime.innerHTML = timeSlots.map(t => `<option value="${t}">${t}</option>`).join('');
   }
+  refreshDurationOptions();
+}
+
+// Only offer durations that fit before the last slot of the night (5:00 AM) —
+// picking a start time near the end and a long duration would otherwise wrap
+// back around to that same date's earlier evening slots, which is invalid.
+function refreshDurationOptions(){
+  const timeSel = document.getElementById('nb-time');
+  const durSel = document.getElementById('nb-duration');
+  if(!timeSel || !durSel) return;
+  const startIdx = timeSlots.indexOf(timeSel.value);
+  const maxDuration = startIdx === -1 ? 4 : Math.min(4, timeSlots.length - startIdx);
+  const prevValue = durSel.value;
+  const labels = { 1: '1 Hour', 2: '2 Hours', 3: '3 Hours', 4: '4 Hours' };
+  let opts = '';
+  for(let h = 1; h <= maxDuration; h++){ opts += `<option value="${h}">${labels[h]}</option>`; }
+  durSel.innerHTML = opts;
+  if(prevValue && parseInt(prevValue, 10) <= maxDuration){ durSel.value = prevValue; }
 }
 async function loadAdminBookingsList(){
   const el = document.getElementById('admin-bookings-list');
