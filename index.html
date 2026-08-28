@@ -450,7 +450,19 @@
         </div>
         <div class="field"><label>Date</label><input type="date" id="nb-date" /></div>
       </div>
-      <div class="field"><label>Time</label><input type="text" id="nb-time" placeholder="e.g. 9:00 PM" /></div>
+      <div class="form-row">
+        <div class="field"><label>Start Time</label>
+          <select id="nb-time" style="width:100%; padding:15px 16px; border-radius:12px; background:var(--card); border:1px solid var(--card-line); color:var(--text); font-size:16px;"></select>
+        </div>
+        <div class="field"><label>Duration</label>
+          <select id="nb-duration" style="width:100%; padding:15px 16px; border-radius:12px; background:var(--card); border:1px solid var(--card-line); color:var(--text); font-size:16px;">
+            <option value="1">1 Hour</option>
+            <option value="2">2 Hours</option>
+            <option value="3">3 Hours</option>
+            <option value="4">4 Hours</option>
+          </select>
+        </div>
+      </div>
       <div class="field"><label>Customer Name</label><input type="text" id="nb-name" placeholder="Customer name" /></div>
       <div class="field"><label>Customer Mobile</label><input type="tel" id="nb-mobile" placeholder="9xxxxxxxxx" /></div>
       <div class="form-row">
@@ -840,6 +852,10 @@ async function loadAdminDashboard(){
   if(an.success){ document.getElementById('stat-revenue').textContent = '₹' + (an.data.revenueToday || 0); }
   loadAdminBookingsList();
   document.getElementById('nb-date').value = todayStr();
+  const nbTime = document.getElementById('nb-time');
+  if(nbTime && !nbTime.options.length){
+    nbTime.innerHTML = timeSlots.map(t => `<option value="${t}">${t}</option>`).join('');
+  }
 }
 async function loadAdminBookingsList(){
   const el = document.getElementById('admin-bookings-list');
@@ -851,7 +867,8 @@ async function loadAdminBookingsList(){
 async function handleCreateBooking(){
   const sport = document.getElementById('nb-sport').value;
   const date = document.getElementById('nb-date').value;
-  const time = document.getElementById('nb-time').value.trim();
+  const time = document.getElementById('nb-time').value;
+  const duration = parseInt(document.getElementById('nb-duration').value, 10) || 1;
   const name = document.getElementById('nb-name').value.trim();
   const mobile = document.getElementById('nb-mobile').value.trim();
   const total = document.getElementById('nb-total').value;
@@ -859,8 +876,11 @@ async function handleCreateBooking(){
   const notes = document.getElementById('nb-notes').value.trim();
   if(!date || !time || !name || !mobile){ showToast('Fill in date, time, name & mobile', true); return; }
 
+  const startIdx = timeSlots.indexOf(time);
+  const endTime = timeSlots[(startIdx + duration) % timeSlots.length];
+
   setBusy('nb-btn', true);
-  const res = await api('createBooking', { sport, date, time, customerName:name, customerMobile:mobile, totalAmount:total, advancePaid:advance, notes });
+  const res = await api('createBooking', { sport, date, time, endTime, customerName:name, customerMobile:mobile, totalAmount:total, advancePaid:advance, notes });
   setBusy('nb-btn', false, 'Save Booking');
   if(!res.success){ showToast(res.error || 'Could not save booking', true); return; }
   showToast('Booking saved — slot marked BOOKED');
