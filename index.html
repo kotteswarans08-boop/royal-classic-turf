@@ -6,11 +6,11 @@
 <title>Royal Classic Turf</title>
 <meta name="theme-color" content="#0A0D0A" />
 <link rel="manifest" href="manifest.json" />
-<link rel="icon" href="icons/icon-192.png" />
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+<link rel="icon" href="icon-192.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Abalone&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg: #0A0D0A;
@@ -27,10 +27,10 @@
     --text: #F3F6F1;
     --text-muted: #93A08F;
     --text-faint: #5B665A;
-    --font-graffiti: 'Poppins', sans-serif;
-    --font-display: 'Poppins', sans-serif;
-    --font-body: 'Manrope', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
+    --font-graffiti: 'Abalone', cursive;
+    --font-display: 'Abalone', cursive;
+    --font-body: 'Abalone', cursive;
+    --font-mono: 'Abalone', cursive;
     --nav-h: 70px;
     --safe-top: env(safe-area-inset-top, 0px);
     --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -42,7 +42,9 @@
     -webkit-font-smoothing: antialiased; touch-action: manipulation;
   }
   @media (prefers-reduced-motion: reduce){ *{animation-duration:.01ms !important; transition-duration:.01ms !important;} }
-  #app{max-width:480px; margin:0 auto; height:100%; position:relative; overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior-y:contain; padding-bottom: calc(var(--nav-h) + 16px + var(--safe-bottom));}
+  #app{max-width:480px; margin:0 auto; height:100%; position:relative; overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior-y:contain; padding-bottom: calc(var(--nav-h) + 16px + var(--safe-bottom)); scrollbar-width:none; -ms-overflow-style:none;}
+  #app::-webkit-scrollbar{display:none; width:0; height:0;}
+  #app:has(#screen-register.active), #app:has(#screen-login.active), #app:has(#screen-admin-login.active){overflow:hidden; padding-bottom:0;}
   a{color:inherit; text-decoration:none;}
   button{font-family:inherit; cursor:pointer; border:none; position:relative; overflow:hidden; -webkit-user-select:none; user-select:none;}
   input{font-family:inherit;}
@@ -78,9 +80,10 @@
   .section-label{font-family:var(--font-display); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--green); margin:24px 0 12px; display:flex; align-items:center; gap:8px;}
   .section-label::before{content:''; width:16px; height:2px; background:var(--green); border-radius:2px;}
 
-  .auth-wrap{min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:40px 26px;}
-  .auth-hero{text-align:center; margin-bottom:30px;}
-  .auth-logo{height:104px; width:auto; margin:0 auto 16px; display:block; filter: drop-shadow(0 0 30px rgba(76,214,91,0.3)); animation: markFloat 3.4s ease-in-out infinite;}
+  .auth-wrap{height:100%; display:flex; flex-direction:column; justify-content:center; padding: clamp(14px, 3vh, 32px) 26px; overflow-y:auto; scrollbar-width:none;}
+  .auth-wrap::-webkit-scrollbar{display:none;}
+  .auth-hero{text-align:center; margin-bottom:clamp(14px, 3vh, 26px);}
+  .auth-logo{height:clamp(64px, 12vh, 96px); width:auto; margin:0 auto 12px; display:block; filter: drop-shadow(0 0 30px rgba(76,214,91,0.3)); animation: markFloat 3.4s ease-in-out infinite;}
   @keyframes markFloat{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
   .auth-hero h1{font-family:var(--font-graffiti); font-size:32px; line-height:1.05; color:var(--green-bright); text-shadow: 0 0 22px rgba(76,214,91,0.35), 2px 2px 0 rgba(0,0,0,0.5); letter-spacing:.5px;}
   .auth-hero p{color:var(--text-muted); font-size:13px; margin-top:10px; font-weight:500;}
@@ -194,7 +197,8 @@
   .nav-item.active .n-icon{transform:translateY(-2px) scale(1.1);}
   .nav-item:active{transform:scale(.9);}
 
-  .admin-login-wrap{min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:40px 26px;}
+  .admin-login-wrap{height:100%; display:flex; flex-direction:column; justify-content:center; padding: clamp(14px, 3vh, 32px) 26px; overflow-y:auto; scrollbar-width:none;}
+  .admin-login-wrap::-webkit-scrollbar{display:none;}
   .admin-badge{display:inline-block; font-family:var(--font-mono); font-size:10px; color:var(--amber); border:1px solid rgba(255,176,32,0.3); background:rgba(255,176,32,0.08); padding:5px 11px; border-radius:100px; margin-bottom:18px;}
   .stat-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:6px;}
   .stat-card{background:var(--card); border:1px solid var(--card-line); border-radius:14px; padding:16px; transition: transform .15s ease;}
@@ -226,7 +230,7 @@
 <body>
 
 <div id="splash">
-  <img class="splash-logo" src="icons/logo.png" alt="Royal Classic Turf" />
+  <img class="splash-logo" src="https://i.postimg.cc/xj3wQWSd/Chat-GPT-Image-Aug-25-2026-06-33-11-PM.png" alt="Royal Classic Turf" />
   <div class="splash-bar"><div class="splash-bar-fill"></div></div>
 </div>
 
@@ -238,7 +242,7 @@
   <div class="screen active" id="screen-register">
     <div class="auth-wrap">
       <div class="auth-hero">
-        <img class="auth-logo" src="icons/logo.png" alt="Royal Classic Turf" />
+        <img class="auth-logo" src="https://i.postimg.cc/xj3wQWSd/Chat-GPT-Image-Aug-25-2026-06-33-11-PM.png" alt="Royal Classic Turf" />
         <h1>ROYAL CLASSIC</h1>
         <p>Create your account to check live availability &amp; manage your bookings</p>
       </div>
@@ -258,7 +262,7 @@
   <div class="screen" id="screen-login">
     <div class="auth-wrap">
       <div class="auth-hero">
-        <img class="auth-logo" src="icons/logo.png" alt="Royal Classic Turf" />
+        <img class="auth-logo" src="https://i.postimg.cc/xj3wQWSd/Chat-GPT-Image-Aug-25-2026-06-33-11-PM.png" alt="Royal Classic Turf" />
         <h1>WELCOME BACK</h1>
         <p>Log in to see your bookings and check tonight's slots</p>
       </div>
@@ -275,7 +279,7 @@
   <div id="main-shell" style="display:none;">
     <header class="topbar">
       <div class="brand">
-        <img class="brand-logo" src="icons/logo.png" alt="logo" />
+        <img class="brand-logo" src="https://i.postimg.cc/xj3wQWSd/Chat-GPT-Image-Aug-25-2026-06-33-11-PM.png" alt="logo" />
         <div><div class="brand-name">ROYAL CLASSIC</div><div class="brand-sub">Turf</div></div>
       </div>
       <div class="status-pill"><span class="status-dot"></span>OPEN 6PM–6AM</div>
@@ -284,7 +288,7 @@
     <!-- ---- HOME ---- -->
     <div class="screen active" id="screen-home">
       <div class="hero-card">
-        <img class="hero-logo" src="icons/logo.png" alt="Royal Classic Turf" />
+        <img class="hero-logo" src="https://i.postimg.cc/xj3wQWSd/Chat-GPT-Image-Aug-25-2026-06-33-11-PM.png" alt="Royal Classic Turf" />
         <h2>ROYAL CLASSIC TURF</h2>
         <div class="hero-tags"><span class="tag">🏏 Cricket</span><span class="tag">⚽ Football</span></div>
         <p class="hero-meta" id="home-meta">📍 Inside Royal Matric Hr Sec School campus<br/>🕕 6:00 PM – 6:00 AM · 1-hour slots</p>
@@ -397,7 +401,7 @@
     <div class="admin-login-wrap">
       <div class="admin-badge">🔒 ADMIN ACCESS</div>
       <div class="auth-hero" style="text-align:left; margin-bottom:24px;">
-        <img class="auth-logo" style="margin:0 0 14px 0;" src="icons/logo.png" alt="logo" />
+        <img class="auth-logo" style="margin:0 0 14px 0;" src="https://i.postimg.cc/xj3wQWSd/Chat-GPT-Image-Aug-25-2026-06-33-11-PM.png" alt="logo" />
         <h1 style="font-size:24px;">TURF ADMIN</h1>
         <p>Manage bookings, slots &amp; analytics</p>
       </div>
@@ -413,7 +417,7 @@
   <div class="screen" id="screen-admin-dash">
     <div style="padding-top:calc(16px + var(--safe-top));">
       <div class="admin-panel-header">
-        <img class="brand-logo" src="icons/logo.png" alt="logo" />
+        <img class="brand-logo" src="https://i.postimg.cc/xj3wQWSd/Chat-GPT-Image-Aug-25-2026-06-33-11-PM.png" alt="logo" />
         <div><div class="brand-name">ADMIN DASHBOARD</div><div class="brand-sub" id="admin-today-date">—</div></div>
       </div>
       <div class="stat-grid">
@@ -475,6 +479,7 @@
     <div style="padding-top:calc(16px + var(--safe-top));">
       <div class="admin-panel-header"><div class="back-btn" onclick="showScreen('screen-admin-dash')">←</div><h3>ANNOUNCEMENTS</h3></div>
       <div class="section-label" style="margin-top:0;">New Announcement</div>
+      <div class="field"><label>Image URL (optional)</label><input type="text" id="an-image" placeholder="https://..." /></div>
       <div class="field"><label>Message</label><input type="text" id="an-text" placeholder="e.g. Closed for maintenance on 30th" /></div>
       <button class="btn-primary" id="an-btn" onclick="handlePostAnnouncement()">Post Announcement</button>
       <div class="section-label">Posted Announcements</div>
@@ -519,6 +524,8 @@
 <div class="toast" id="toast"></div>
 
 <script>
+
+
 /* ================= CONFIG ================= */
 const API_BASE_URL = 'https://script.google.com/macros/s/AKfycbwR0cBhjdLlyKKiNQB6affLa6pFr-WIzOYjEKrcyh8xhUKXGmaEZZC-RJpc0x5zFjAdFA/exec';
 
@@ -725,7 +732,8 @@ async function loadAnnouncement(){
   const slot = document.getElementById('announce-slot');
   if(res.success && res.data && res.data.length){
     const a = res.data[0];
-    slot.innerHTML = `<div class="announce-banner"><div class="a-icon">📢</div><div><p>${a.message}</p><div class="a-time">${a.date || ''}</div></div></div>`;
+    const img = a.image ? `<img src="${a.image}" alt="" style="width:100%; border-radius:10px; margin-bottom:10px; display:block;" />` : '';
+    slot.innerHTML = `<div class="announce-banner" style="flex-direction:column;">${img}<div style="display:flex; gap:12px; align-items:flex-start;"><div class="a-icon">📢</div><div><p>${a.message}</p><div class="a-time">${a.date || ''}</div></div></div></div>`;
   } else {
     slot.innerHTML = '';
   }
@@ -909,18 +917,21 @@ async function loadAdminAnnouncements(){
   if(!res.success || !(res.data||[]).length){ el.innerHTML = '<div class="empty-state">No announcements yet.</div>'; return; }
   el.innerHTML = res.data.map(a => `
     <div class="booking-card">
+      ${a.image ? `<img src="${a.image}" alt="" style="width:48px; height:48px; object-fit:cover; border-radius:8px; margin-right:10px;" />` : ''}
       <div class="booking-left"><div class="b-date">${a.message}</div><div class="b-time">${a.date || ''}</div></div>
       <span class="b-badge cancelled" style="cursor:pointer;" onclick="handleDeleteAnnouncement('${a.id}')">Remove</span>
     </div>`).join('');
 }
 async function handlePostAnnouncement(){
   const text = document.getElementById('an-text').value.trim();
+  const image = document.getElementById('an-image').value.trim();
   if(!text){ showToast('Enter a message', true); return; }
   setBusy('an-btn', true);
-  const res = await api('postAnnouncement', { message: text });
+  const res = await api('postAnnouncement', { message: text, imageUrl: image });
   setBusy('an-btn', false, 'Post Announcement');
   if(!res.success){ showToast(res.error || 'Failed to post', true); return; }
   document.getElementById('an-text').value = '';
+  document.getElementById('an-image').value = '';
   showToast('Announcement posted');
   loadAdminAnnouncements();
 }
